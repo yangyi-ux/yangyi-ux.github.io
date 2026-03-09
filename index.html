@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yang Yi — UX Research Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --paper: #f5f3ee;
+      --muted: #8a8880;
+      --accent: #2d5a8e;
+      --accent-warm: #b85c38;
+      --rule: #d8d4cb;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(245,243,238,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 5rem;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 3rem 6rem 4rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #4a4a45;
+      max-width: 420px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 0.1rem;
+      transition: gap 0.3s;
+    }
+
+    .hero-cta:hover { gap: 1.4rem; }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6rem 4rem 6rem 3rem;
+      position: relative;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat {
+      border-top: 1px solid var(--rule);
+      padding-top: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-number sup {
+      font-size: 1rem;
+      vertical-align: super;
+      color: var(--accent-warm);
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    .hero-regions {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      border-top: 1px solid var(--rule);
+      padding-top: 1rem;
+    }
+
+    .hero-regions span {
+      color: var(--ink);
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 7rem 4rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ABOUT */
+    #about {
+      background: #f0ede6;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-left h2 {
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .about-left h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-left .about-contact {
+      margin-top: 2.5rem;
+    }
+
+    .about-contact-item {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-contact-item a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .about-right p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #3a3a35;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+    }
+
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--rule);
+      color: var(--muted);
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* EXPERIENCE TIMELINE */
+    .experience-section {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .timeline-meta {
+      padding-top: 0.2rem;
+    }
+
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .timeline-org {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-top: 0.3rem;
+    }
+
+    .timeline-role {
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #5a5a55;
+    }
+
+    /* PORTFOLIO */
+    #portfolio {
+      background: var(--ink);
+      color: var(--paper);
+      border-top: none;
+    }
+
+    #portfolio .section-label {
+      color: #6a6a60;
+    }
+
+    #portfolio .section-label::after {
+      background: #3a3a35;
+    }
+
+    .case-studies {
+      display: grid;
+      gap: 0;
+    }
+
+    .case-study {
+      border-top: 1px solid #2a2a25;
+      padding: 4rem 0;
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr;
+      gap: 3rem;
+      align-start: start;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .case-study.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .case-number {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #4a4a45;
+      padding-top: 0.3rem;
+    }
+
+    .case-left h3 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
+      color: var(--paper);
+    }
+
+    .case-left h3 em {
+      font-style: italic;
+      color: #a8c8e8;
+    }
+
+    .case-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid #3a3a35;
+      color: #6a6a60;
+      margin-bottom: 1.2rem;
+    }
+
+    .case-context {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: #8a8880;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .case-right {
+      padding-top: 0.3rem;
+    }
+
+    .case-section-title {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #4a4a45;
+      margin-bottom: 1rem;
+      margin-top: 2rem;
+    }
+
+    .case-section-title:first-child { margin-top: 0; }
+
+    .case-body {
+      font-size: 0.97rem;
+      font-weight: 300;
+      color: #b0ada8;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .case-impact {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border-left: 2px solid var(--accent);
+      background: rgba(45,90,142,0.08);
+    }
+
+    .case-impact-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #6a8aae;
+      margin-bottom: 0.6rem;
+    }
+
+    .case-impact p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #c8c5c0;
+      line-height: 1.7;
+    }
+
+    .case-impact strong {
+      color: var(--paper);
+      font-weight: 400;
+    }
+
+    .methods-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .method-chip {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      background: #2a2a25;
+      color: #7a7a70;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid #2a2a25;
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer .footer-name {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: 1rem;
+      color: #6a6a60;
+      letter-spacing: 0.1em;
+    }
+
+    footer .footer-contact {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #4a4a45;
+    }
+
+    footer .footer-contact a {
+      color: #6a8aae;
+      text-decoration: none;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left > * {
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-name    { animation-delay: 0.2s; }
+    .hero-title   { animation-delay: 0.3s; }
+    .hero-tagline { animation-delay: 0.4s; }
+    .hero-cta     { animation-delay: 0.5s; }
+
+    .hero-right > * {
+      animation: fadeUp 0.8s ease both;
+      animation-delay: 0.4s;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 3rem 1.5rem 5rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+      .case-study { grid-template-columns: 1fr; gap: 1.5rem; }
+      .case-number { display: none; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-name">Yang Yi</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-left">
+      <p class="hero-eyebrow">UX Research Portfolio</p>
+      <h1 class="hero-name">Yang <em>Yi,</em><br>PhD</h1>
+      <p class="hero-title">Lead UX Researcher &nbsp;·&nbsp; Singapore</p>
+      <p class="hero-tagline">
+        Translating complex human behaviour into measurable business outcomes — 
+        across healthcare, logistics, e-commerce, and AI products in Southeast Asia, China, Japan, and India.
+      </p>
+      <a href="#portfolio" class="hero-cta">View Case Studies &nbsp;→</a>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-number">15<sup>+</sup></div>
+          <div class="stat-label">Years Research Experience</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Regional Markets</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">408<sup>%</sup></div>
+          <div class="stat-label">Min. Sales Uplift Driven</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">MOH</div>
+          <div class="stat-label">Policy Impact (Singapore)</div>
+        </div>
+      </div>
+      <div class="hero-regions">
+        Markets: &nbsp;
+        <span>SG &nbsp;·&nbsp; MY &nbsp;·&nbsp; TH &nbsp;·&nbsp; VN &nbsp;·&nbsp; ID &nbsp;·&nbsp; CN &nbsp;·&nbsp; JP &nbsp;·&nbsp; IN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 &nbsp; About</div>
+    <div class="about-grid">
+      <div class="about-left">
+        <h2>Research<br>that <em>moves</em><br>the needle.</h2>
+        <div class="about-contact">
+          <div class="about-contact-item">✉ &nbsp;<a href="mailto:pkusociy@gmail.com">pkusociy@gmail.com</a></div>
+          <div class="about-contact-item">☎ &nbsp;(65) 8393 8280</div>
+          <div class="about-contact-item">✦ &nbsp;English (fluent) · Mandarin (native)</div>
+        </div>
+      </div>
+      <div class="about-right">
+        <p>
+          I am a PhD-trained mixed-methods researcher with deep expertise in both qualitative inquiry and quantitative analytics. My work bridges the gap between raw user data and business strategy — producing insights that are not just intellectually rigorous, but operationally actionable.
+        </p>
+        <p>
+          With over a decade of hands-on experience across Southeast Asia, China, Japan, and India, I specialise in leading complex, end-to-end research programmes for digital products and offline services. I have successfully steered teams from reactive, ad-hoc research models to proactive, insight-driven cultures that shape product roadmaps and monetisation strategies.
+        </p>
+        <p>
+          My interdisciplinary background in sociology, econometrics, and ethnography gives me an unusually broad toolkit — from longitudinal survey modelling and log-data analytics to contextual inquiry and focus group facilitation — enabling me to design the right study for every question.
+        </p>
+        <div class="about-skills">
+          <span class="skill-tag">In-depth Interviews</span>
+          <span class="skill-tag">Contextual Inquiry</span>
+          <span class="skill-tag">Survey Design</span>
+          <span class="skill-tag">Ethnographic Fieldwork</span>
+          <span class="skill-tag">Focus Groups</span>
+          <span class="skill-tag">Data Analytics</span>
+          <span class="skill-tag">Econometric Modelling</span>
+          <span class="skill-tag">User Archetypes</span>
+          <span class="skill-tag">Journey Mapping</span>
+          <span class="skill-tag">Research Playbooks</span>
+          <span class="skill-tag">Stakeholder Management</span>
+          <span class="skill-tag">Team Leadership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience-section">
+    <div class="section-label">02 &nbsp; Experience</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Dec 2024 – Present</div>
+          <div class="timeline-org">Stealth Startup</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">User Research &amp; Domain Advisor</div>
+          <div class="timeline-desc">Advising a 0-to-1 AI-enabled on-demand healthcare product in India. Generating data insights to inform product design, roadmap, and business strategy for both offline care services and app development. Designing learning and training materials for elderly care to enable scalable partner capability building.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Aug – Nov 2024</div>
+          <div class="timeline-org">Vocalbeats</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Principal UX Researcher (Business Strategy)</div>
+          <div class="timeline-desc">Drove cross-functional initiatives integrating data science, user research, and business strategy for an AI-powered instant messaging tool targeting Japan and Southeast Asia. Led foundational and evaluative research (interviews, surveys), partnered with data analysts on statistical modelling, and translated large-scale log data into actionable product recommendations.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Jan 2022 – Apr 2024</div>
+          <div class="timeline-org">NinjaVan</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Senior UX Researcher / (Acting) Research Lead</div>
+          <div class="timeline-desc">Transformed the research team from a reactive model to a proactive, cross-functional force shaping product direction. Established data-driven culture, developed a research playbook, mentored team members, and led end-to-end UX research on e-commerce across Southeast Asia and China. Developed user archetypes that directly informed product strategy, redesign, and monetisation — driving sales growth of 408%–1,851% across markets.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Apr 2021 – Jan 2022</div>
+          <div class="timeline-org">NVPC</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Senior Manager, Knowledge and Insights</div>
+          <div class="timeline-desc">Led a national survey, contributed to data analytics for NVPC's fundraising platform, and managed vendor relationships, overseeing the full research lifecycle from design through delivery.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Jan 2019 – Jan 2021</div>
+          <div class="timeline-org">Duke-NUS Medical School</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Researcher &amp; Project Manager</div>
+          <div class="timeline-desc">Led end-to-end mixed-methods research using ethnographic fieldwork, focus groups, and surveys. Managed IRB applications, funding applications, and vendor relationships. Policy evaluation findings were adopted by Singapore's Ministry of Health to inform national ageing policy.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Jul 2016 – Dec 2018</div>
+          <div class="timeline-org">National University of Singapore</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Post-doctoral Researcher &amp; Project Manager</div>
+          <div class="timeline-desc">Conducted advanced econometric modelling on large longitudinal datasets. Presented at leading international conferences in the US, Japan, Malaysia, and Singapore. Secured S$25,000 in funding and organised an international academic conference.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <div class="timeline-period">Jul 2011 – Jun 2016</div>
+          <div class="timeline-org">National University of Singapore</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-role">Doctoral Researcher (PhD, Sociology)</div>
+          <div class="timeline-desc">Dissertation used time series data and econometric models to demonstrate that social exclusion significantly elevates population-level risk of cognitive impairment. Published in a top health research journal; commentaries in The Straits Times and Lianhe Zaobao.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-label">03 &nbsp; Case Studies</div>
+    <div class="case-studies">
+
+      <!-- CASE STUDY 1 -->
+      <div class="case-study">
+        <div class="case-number">01</div>
+        <div class="case-left">
+          <div class="case-tag">Healthcare · Service Design · Policy</div>
+          <h3>Home Personal Care<br>for <em>Low-income</em><br>Older Adults</h3>
+          <p class="case-context">
+            Duke-NUS Medical School, commissioned by the Ministry of Health, Singapore. Evaluating the effectiveness of the Care Close to Home (C2H) pilot programme delivering physical, cognitive, social, and personal care to vulnerable seniors in 1–2 room rental flats.
+          </p>
+          <div class="case-section-title">Methods</div>
+          <div class="methods-list">
+            <span class="method-chip">Survey</span>
+            <span class="method-chip">Semi-structured Interviews</span>
+            <span class="method-chip">Contextual Inquiry</span>
+            <span class="method-chip">Focus Groups</span>
+          </div>
+        </div>
+        <div class="case-right">
+          <div class="case-section-title">The Challenge</div>
+          <p class="case-body">
+            The original research plan relied on self-reporting from elderly service users, who are particularly vulnerable to reporting bias and social desirability bias — risks that could render the evaluation findings unreliable and lead to misguided policy decisions.
+          </p>
+
+          <div class="case-section-title">My Approach</div>
+          <p class="case-body">
+            I identified the structural limitations of the initial design and proposed a methodological redesign — adding focus group interviews with service providers (healthcare aides and social workers) and their managers. This introduced a triangulating perspective, allowing us to cross-validate user self-reports with frontline care team observations, capturing a richer and more accurate picture of unmet needs.
+          </p>
+          <p class="case-body">
+            Contextual inquiry in participants' homes revealed the realities of life in 33m² flats — spatial constraints, mobility challenges, and the texture of daily life that no survey could surface. The combination of methods gave us both breadth and depth.
+          </p>
+
+          <div class="case-section-title">Key Finding</div>
+          <p class="case-body">
+            While physical and personal care services were well-received, <strong style="color: var(--paper);">social care was significantly under-provided</strong>. The care teams surfaced a critical gap: seniors' need for social participation — accompanying them to public spaces, facilitating community connection — was not being addressed. This is now understood as "social prescribing."
+          </p>
+
+          <div class="case-impact">
+            <div class="case-impact-label">Impact</div>
+            <p>Findings and service recommendations from this study were <strong>adopted by Singapore's Ministry of Health</strong> in the national rollout of the eldercare centre service model from 2021–2024, incorporating befriending, buddying, and community participation services for seniors island-wide.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE STUDY 2 -->
+      <div class="case-study">
+        <div class="case-number">02</div>
+        <div class="case-left">
+          <div class="case-tag">E-commerce · Discovery Research · Mixed Methods</div>
+          <h3>Merchant <em>Archetypes</em><br>&amp; Product-Market<br>Fit at NinjaVan</h3>
+          <p class="case-context">
+            NinjaVan, Southeast Asia. A two-phase mixed-methods study to rethink how merchants are understood — and to translate those insights directly into product strategy and revenue growth across multiple SEA markets.
+          </p>
+          <div class="case-section-title">Methods</div>
+          <div class="methods-list">
+            <span class="method-chip">Semi-structured Interviews (n=25)</span>
+            <span class="method-chip">Random + Manual Sampling</span>
+            <span class="method-chip">Log Data Analytics</span>
+            <span class="method-chip">Statistical Modelling</span>
+          </div>
+        </div>
+        <div class="case-right">
+          <div class="case-section-title">The Challenge</div>
+          <p class="case-body">
+            Existing merchant archetypes were defined purely by sales channel and volume — blunt categories that offered no insight into user needs, pain points, or growth trajectories. The product team was targeting the wrong user group for Product X, and there was no data-driven foundation to course-correct.
+          </p>
+
+          <div class="case-section-title">Phase 1 — Qualitative Discovery</div>
+          <p class="case-body">
+            I designed and led 25 semi-structured interviews across Singapore, Malaysia, Thailand, Vietnam, and Indonesia — navigating cross-country recruitment, language barriers, and significant stakeholder management challenges under tight timelines.
+          </p>
+          <p class="case-body">
+            Analysis revealed three behaviour-based merchant archetypes along a business maturity journey: <strong style="color: var(--paper);">Novice Seller → Bold Expansionist → Master Merchant</strong> — each with distinct logistics needs, growth motivations, and pain points that the volume-based model had completely obscured.
+          </p>
+
+          <div class="case-section-title">Phase 2 — Quantitative Translation</div>
+          <p class="case-body">
+            I identified key behavioural metrics from the interview data that could operationalise each archetype in the company's database. Using two complementary analytical methods, I generated a lead list of over 3,000 expansion-stage merchants — the segment I had identified as the correct target for Product X, which directly contradicted the product team's assumptions about their ideal customer.
+          </p>
+
+          <div class="case-impact">
+            <div class="case-impact-label">Impact</div>
+            <p>The research led to a full product feature revamp for Product X, targeting the right user group. The sales leads I generated drove a <strong>408% to 1,851% increase in sales</strong> across different SEA markets — directly attributable to aligning product features and GTM strategy with research-validated merchant archetypes.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Yang Yi, PhD &nbsp;·&nbsp; UX Researcher</div>
+    <div class="footer-contact">
+      <a href="mailto:pkusociy@gmail.com">pkusociy@gmail.com</a>
+      &nbsp;&nbsp;·&nbsp;&nbsp;
+      (65) 8393 8280
+    </div>
+  </footer>
+
+  <script>
+    // Intersection observer for case study animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.case-study').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
