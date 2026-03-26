@@ -886,6 +886,50 @@
     </div>
   </section>
 
+  <style>
+  /* 1. Make the grid fit the screen and auto-stack */
+  .artwork-grid {
+    display: grid;
+    /* This tells the browser: "Fit as many 300px boxes as you can. 
+       If they don't fit, wrap them to the next line (stacking)." */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px; /* Optional: keeps the grid from getting TOO wide on huge monitors */
+    margin: 0 auto;    /* Centers the entire grid on the page */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* 2. Define the size of each placeholder box */
+  .artwork-placeholder {
+    position: relative;
+    width: 100%;
+    height: 400px;     /* Change this to make the boxes taller or shorter */
+    background-color: #f0f0f0; /* Light gray background for empty slots */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 3. Ensure the image fills the box without stretching */
+  .artwork-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Use 'contain' if you don't want any cropping */
+  }
+
+  /* 4. Optional: Style for the label/icon if you keep them */
+  .artwork-placeholder-label {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(255,255,255,0.7);
+    padding: 2px 8px;
+  }
+</style>
+  
   <!-- MY ARTWORK -->
   <section id="artwork">
     <div class="section-label">04 &nbsp; My Artwork</div>
