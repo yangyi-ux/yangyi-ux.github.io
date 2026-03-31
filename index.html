@@ -601,6 +601,18 @@
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
 
+    /* Mobile: wrap nav so "Artwork" is never clipped */
+    @media (max-width: 480px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+
     @media (max-width: 560px) {
       .artwork-grid { grid-template-columns: 1fr; }
     }
